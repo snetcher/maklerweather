@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Template for the Maklerweather block for current weather.
+ * Available variables:
+ * - maklerweather_detail: array of weather list.
+ */
+#}
+
+<div class="makler-weather-container">
+  <div class="makler-weather-list">
+    {% if (maklerweather_detail.weather.image) %}
+        <div class="weather-icon">
+          <span class="data"><img src="https://openweathermap.org/img/w/{{ maklerweather_detail.image }}.png"/></span>
+        </div>
+        {% endif %}
+
+  </div>
+</div>
