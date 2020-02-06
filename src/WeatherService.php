@@ -71,31 +71,13 @@ class WeatherService {
   /**
    * Return an array containing the current weather information.
    */
-  public function getCurrentWeatherInformation($output, $config) {
+  public function getCurrentWeatherInformation($output) {
     $html = [];
 
-    foreach ($config['outputitems'] as $value) {
-      if (!empty($config['outputitems'][$value])) {
-        switch ($config['outputitems'][$value]) {
-
-          case 'name':
-            [$value] = $output['name'];
-            break;
-
-          case 'weather':
-            $html[$value]['desc'] = $output['weather'][0]['description'];
-            break;
-
-          case 'icon':
-            $html[$value]['image'] = $output['weather'][0]['icon'];
-            break;
-
-          case 'temp':
-            $html[$value] = round($output['main']['temp'] - 273.15) . '°C';
-            break;
-        }
-      }
-    }
+    $html['name'] = $output['name'];
+    $html['description'] = $output['weather'][0]['description'];
+    $html['image'] = $output['weather'][0]['icon'];
+    $html['temp'] = round($output['main']['temp'] - 273.15) . '°C';
 
     $build[] = [
       '#theme' => 'maklerweather',

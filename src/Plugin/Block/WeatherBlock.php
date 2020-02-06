@@ -78,8 +78,10 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
     $config = $this->getConfiguration();
     $output = json_decode($this->weatherservice->getWeatherInformation($config), TRUE);
 
+    \Drupal::logger('_test')->notice("<pre>".json_encode($output)."</pre>");
+
     if (!empty($output)) {
-      $build = $this->weatherservice->getCurrentWeatherInformation($output, $config);
+      $build = $this->weatherservice->getCurrentWeatherInformation($output);
     }
 
     return $build;
