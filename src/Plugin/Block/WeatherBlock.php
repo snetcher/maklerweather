@@ -68,7 +68,14 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static($configuration, $plugin_id, $plugin_definition, $container->get('maklerweather.weather_service'), $container->get('module_handler'), $container->get('token'));
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('maklerweather.weather_service'),
+      $container->get('module_handler'),
+      $container->get('token')
+    );
   }
 
   /**
@@ -78,10 +85,11 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
     $config = $this->getConfiguration();
     $output = json_decode($this->weatherservice->getWeatherInformation($config), TRUE);
 
-    \Drupal::logger('_test')->notice("<pre>".json_encode($output)."</pre>");
+//    \Drupal::logger('_build_config')->notice(json_encode($config));
+//    \Drupal::logger('_build_output')->notice(json_encode($output));
 
     if (!empty($output)) {
-      $build = $this->weatherservice->getCurrentWeatherInformation($output);
+      $build = $this->weatherservice->getCurrentWeatherInformation($output, $config);
     }
 
     return $build;
@@ -119,6 +127,30 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
       '#description' => $this->t('Select the count in case of hourlyforecast maximum value should be 36 and in case of daily forecast maximum value should be 7. in case of current weather forecast value is the default value'),
     ];
 
+    $weatherdata = array(
+      'name' => $this->t('City Name'),
+      'weather' => $this->t('Weather details include icon and description'),
+      'temp' => $this->t('Current Temperature'),
+      'country' => $this->t('Country'),
+    );
+    $form['weatherdata'] = array(
+      '#type' => 'details',
+      '#title' => $this->t('Output Option available for current weather'),
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
+    );
+    $form['weatherdata']['items'] = array(
+      '#type' => 'checkboxes',
+      '#options' => $weatherdata,
+      '#description' => $this->t('Select output data you want to display.'),
+      '#default_value' => !empty($config['outputitems']) ? $config['outputitems'] : array(
+        'name',
+        'weather',
+        'temp',
+        'country',
+      ),
+    );
+
     return $form;
   }
 
@@ -130,6 +162,7 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
       $user = $form_state->getValue('account');
       $message = $this->token->replace($form_state->getValue('input_value'), ['user' => $user]);
     }
+    $this->setConfigurationValue('outputitems', $form_state->getValue('weatherdata')['items']);
     if (!empty($message)) {
       $this->setConfigurationValue('input_value', $message);
     }
@@ -138,7 +171,7 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
     }
     $this->setConfigurationValue('count', $form_state->getValue('count'));
 
-    $this->configuration['my_block_settings'] = $form_state->getValue('my_block_settings');
+//    $this->configuration['my_block_settings'] = $form_state->getValue('my_block_settings');
   }
 
 }

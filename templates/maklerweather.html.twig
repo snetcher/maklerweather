@@ -9,11 +9,20 @@
 
 <div class="makler-weather-container">
   <div class="makler-weather-list">
-    {% if (maklerweather_detail.weather.image) %}
-        <div class="weather-icon">
-          <span class="data"><img src="https://openweathermap.org/img/w/{{ maklerweather_detail.image }}.png"/></span>
-        </div>
+
+    <div class="weather-icon">
+        <span class="data">
+          {% if (image) %}
+            <img src="https://openweathermap.org/img/w/{{ image }}.png" alt=""/>
+          {% endif %}
+        </span>
+    </div>
+
+    <div class="city"><h3>
+        {% if (name) %}
+          {{ name }}
         {% endif %}
+      </h3></div>
 
   </div>
 </div>

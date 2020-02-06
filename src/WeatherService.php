@@ -71,13 +71,43 @@ class WeatherService {
   /**
    * Return an array containing the current weather information.
    */
-  public function getCurrentWeatherInformation($output) {
+  public function getCurrentWeatherInformation($output, $config) {
     $html = [];
 
-    $html['name'] = $output['name'];
-    $html['description'] = $output['weather'][0]['description'];
-    $html['image'] = $output['weather'][0]['icon'];
-    $html['temp'] = round($output['main']['temp'] - 273.15) . '°C';
+    foreach ($config['outputitems'] as $value) {
+      if (!empty($config['outputitems'][$value])) {
+        switch ($config['outputitems'][$value]) {
+
+          case 'name':
+            $html[$value] = $output['name'];
+            break;
+
+          case 'description':
+            $html[$value]['desc'] = $output['weather'][0]['description'];
+            break;
+
+          case 'image':
+            $html[$value]['image'] = $output['weather'][0]['icon'];
+            break;
+
+          case 'temp':
+            $html[$value] = round($output['main']['temp'] - 273.15) . '°C';
+            break;
+        }
+      }
+    }
+
+    //    $html['name'] = $output['name'];
+    //    $html['description'] = $output['weather'][0]['description'];
+    //    $html['image'] = $output['weather'][0]['icon'];
+    //    $html['temp'] = round($output['main']['temp'] - 273.15) . '°C';
+
+//    \Drupal::logger('_build_config')->notice(json_encode($config));
+    //
+    //    \Drupal::logger('_name')->notice(json_encode($output['name']));
+    //    \Drupal::logger('_description')->notice(json_encode($output['weather'][0]['description']));
+    //    \Drupal::logger('_icon')->notice(json_encode($output['weather'][0]['icon']));
+    //    \Drupal::logger('_temp')->notice(json_encode($output['main']['temp']) - 273.15 . '°C');
 
     $build[] = [
       '#theme' => 'maklerweather',
@@ -89,6 +119,9 @@ class WeatherService {
       ],
       '#cache' => ['max-age' => 0],
     ];
+
+    //    \Drupal::logger('_build')->notice(json_encode($build));
+//    \Drupal::logger('_html')->notice(json_encode($html));
 
     return $build;
   }
