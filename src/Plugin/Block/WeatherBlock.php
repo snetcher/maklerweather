@@ -92,6 +92,7 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
       $build = $this->weatherservice->getCurrentWeatherInformation($output, $config);
     }
 
+    \Drupal::logger('_block_build')->notice(json_encode($build));
     return $build;
   }
 
@@ -129,7 +130,8 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
 
     $weatherdata = array(
       'name' => $this->t('City Name'),
-      'weather' => $this->t('Weather details include icon and description'),
+      'description' => $this->t('Weather detail description'),
+      'image' => $this->t('Weather detail icon'),
       'temp' => $this->t('Current Temperature'),
       'country' => $this->t('Country'),
     );
@@ -145,9 +147,9 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
       '#description' => $this->t('Select output data you want to display.'),
       '#default_value' => !empty($config['outputitems']) ? $config['outputitems'] : array(
         'name',
-        'weather',
+        'description',
+        'image',
         'temp',
-        'country',
       ),
     );
 
@@ -171,7 +173,7 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
     }
     $this->setConfigurationValue('count', $form_state->getValue('count'));
 
-//    $this->configuration['my_block_settings'] = $form_state->getValue('my_block_settings');
+    $this->configuration['my_block_settings'] = $form_state->getValue('my_block_settings');
   }
 
 }

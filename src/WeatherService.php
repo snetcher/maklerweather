@@ -85,11 +85,11 @@ class WeatherService {
             break;
 
           case 'description':
-            $html[$value]['description'] = $output['weather'][0]['description'];
+            $html[$value] = $output['weather'][0]['description'];
             break;
 
           case 'image':
-            $html[$value]['image'] = $output['weather'][0]['icon'];
+            $html[$value] = $output['weather'][0]['icon'];
             break;
 
           case 'temp':
@@ -99,10 +99,13 @@ class WeatherService {
       }
     }
 
-    //    \Drupal::logger('_name')->notice(json_encode($output['name']));
-    //    \Drupal::logger('_description')->notice(json_encode($output['weather'][0]['description']));
-    //    \Drupal::logger('_icon')->notice(json_encode($output['weather'][0]['icon']));
-    //    \Drupal::logger('_temp')->notice(json_encode($output['main']['temp']) - 273.15 . '°C');
+    \Drupal::logger('_name')->notice(json_encode($output['name']));
+    \Drupal::logger('_description')
+      ->notice(json_encode($output['weather'][0]['description']));
+    \Drupal::logger('_icon')
+      ->notice(json_encode($output['weather'][0]['icon']));
+    \Drupal::logger('_temp')
+      ->notice(json_encode($output['main']['temp']) - 273.15 . '°C');
 
     $build[] = [
       '#theme' => 'maklerweather',
@@ -115,10 +118,10 @@ class WeatherService {
       '#cache' => ['max-age' => 0],
     ];
 
-    \Drupal::logger('_build_config')->notice(json_encode($config));
-    \Drupal::logger('_build_output')->notice(json_encode($output));
-    \Drupal::logger('_build')->notice(json_encode($build));
-    \Drupal::logger('_html')->notice(json_encode($html));
+    //    \Drupal::logger('_build_config')->notice(json_encode($config));
+    //    \Drupal::logger('_build_output')->notice(json_encode($output));
+    //    \Drupal::logger('_build')->notice(json_encode($build));
+    //    \Drupal::logger('_html')->notice(json_encode($html));
 
     return $build;
   }
