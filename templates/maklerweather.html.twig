@@ -8,21 +8,34 @@
 #}
 
 <div class="makler-weather-container">
-  <div class="makler-weather-list">
 
-    <div class="weather-icon">
-        <span class="data">
-          {% if (maklerweather_detail.image) %}
-            <img src="https://openweathermap.org/img/w/{{ maklerweather_detail.image }}.png" alt=""/>
-          {% endif %}
-        </span>
-    </div>
 
-    <div class="city"><h3>
-        {% if (maklerweather_detail.name) %}
-          {{ maklerweather_detail.name }}
+  <div class="box">
+    {#    <div class="wave -one">&nbsp;</div>#}
+    {#    <div class="wave -two">&nbsp;</div>#}
+    {#    <div class="wave -three">&nbsp;</div>#}
+
+    <div class="info">
+
+      <div class="weather-wrapper">
+        {% if (maklerweather_detail.icon) %}
+          <div class="weather-icon">
+            <img src="https://openweathermap.org/img/w/{{ maklerweather_detail.icon }}.png" alt=""/>
+          </div>
         {% endif %}
-      </h3></div>
 
+        {% if (maklerweather_detail.temp) %}
+          <div class="temp">
+            <span class="temp-value">{{ maklerweather_detail.temp }}</span><span class="temp-units">°C</span>
+          </div>
+        {% endif %}
+
+      </div>
+      {% if (maklerweather_detail.description) %}
+        <div class="description">
+          <p>{{ maklerweather_detail.description }}</p>
+        </div>
+      {% endif %}
+    </div>
   </div>
 </div>

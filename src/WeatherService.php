@@ -73,8 +73,6 @@ class WeatherService {
    * Return an array containing the current weather information.
    */
   public function getCurrentWeatherInformation($output, $config) {
-    $html = [];
-
 
     foreach ($config['outputitems'] as $value) {
       if (!empty($config['outputitems'][$value])) {
@@ -88,40 +86,29 @@ class WeatherService {
             $html[$value] = $output['weather'][0]['description'];
             break;
 
-          case 'image':
+          case 'icon':
             $html[$value] = $output['weather'][0]['icon'];
             break;
 
           case 'temp':
-            $html[$value] = round($output['main']['temp'] - 273.15) . '°C';
+            $html[$value] = round($output['main']['temp'] - 273.15);
             break;
         }
       }
     }
 
-    \Drupal::logger('_name')->notice(json_encode($output['name']));
-    \Drupal::logger('_description')
-      ->notice(json_encode($output['weather'][0]['description']));
-    \Drupal::logger('_icon')
-      ->notice(json_encode($output['weather'][0]['icon']));
-    \Drupal::logger('_temp')
-      ->notice(json_encode($output['main']['temp']) - 273.15 . '°C');
+//    \Drupal::logger('_name')->notice(json_encode($output['name']));
 
     $build[] = [
       '#theme' => 'maklerweather',
-      '#maklerweather_detail' => $html,
       '#attached' => [
         'library' => [
           'maklerweather/maklerweather_theme',
         ],
       ],
       '#cache' => ['max-age' => 0],
+      '#maklerweather_detail' => $html,
     ];
-
-    //    \Drupal::logger('_build_config')->notice(json_encode($config));
-    //    \Drupal::logger('_build_output')->notice(json_encode($output));
-    //    \Drupal::logger('_build')->notice(json_encode($build));
-    //    \Drupal::logger('_html')->notice(json_encode($html));
 
     return $build;
   }

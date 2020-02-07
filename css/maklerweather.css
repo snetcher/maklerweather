@@ -1,3 +1,29 @@
-.block-maklerweather-block h2 {
-  color: red;
+.block-maklerweather-block .weather-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.block-maklerweather-block .weather-wrapper .temp {
+  font-size: 50px;
+  margin: 0 0 0 -10px;
+  padding: 0 15px 0 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.block-maklerweather-block .weather-wrapper .temp .temp-value {
+  font-size: 50px;
+  line-height: 1;
+}
+
+.block-maklerweather-block .weather-wrapper .temp .temp-units {
+  font-size: 16px;
+  line-height: 1;
+  padding-top: 5px;
+}
+
+.block-maklerweather-block .description {
+  text-align: center;
 }
