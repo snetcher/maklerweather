@@ -49,6 +49,7 @@ class WeatherService {
     $query['cnt'] = $options['count'];
     $input_data = Html::escape($options['input_value']);
     $query['q'] = $input_data;
+    $query['lang'] = 'de';
 
     return $query;
   }
