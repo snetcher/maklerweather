@@ -2,6 +2,8 @@
 
 /**
  * Implements hook_theme().
+ *
+ * @return array
  */
 function maklerweather_theme($existing, $type, $theme, $path) {
   return [
