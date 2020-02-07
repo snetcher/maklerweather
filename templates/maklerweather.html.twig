@@ -12,15 +12,15 @@
 
     <div class="weather-icon">
         <span class="data">
-          {% if (image) %}
-            <img src="https://openweathermap.org/img/w/{{ image }}.png" alt=""/>
+          {% if (maklerweather_detail.image) %}
+            <img src="https://openweathermap.org/img/w/{{ maklerweather_detail.image }}.png" alt=""/>
           {% endif %}
         </span>
     </div>
 
     <div class="city"><h3>
-        {% if (name) %}
-          {{ name }}
+        {% if (maklerweather_detail.name) %}
+          {{ maklerweather_detail.name }}
         {% endif %}
       </h3></div>
 

@@ -74,6 +74,7 @@ class WeatherService {
   public function getCurrentWeatherInformation($output, $config) {
     $html = [];
 
+
     foreach ($config['outputitems'] as $value) {
       if (!empty($config['outputitems'][$value])) {
         switch ($config['outputitems'][$value]) {
@@ -83,7 +84,7 @@ class WeatherService {
             break;
 
           case 'description':
-            $html[$value]['desc'] = $output['weather'][0]['description'];
+            $html[$value]['description'] = $output['weather'][0]['description'];
             break;
 
           case 'image':
@@ -97,13 +98,6 @@ class WeatherService {
       }
     }
 
-    //    $html['name'] = $output['name'];
-    //    $html['description'] = $output['weather'][0]['description'];
-    //    $html['image'] = $output['weather'][0]['icon'];
-    //    $html['temp'] = round($output['main']['temp'] - 273.15) . '°C';
-
-//    \Drupal::logger('_build_config')->notice(json_encode($config));
-    //
     //    \Drupal::logger('_name')->notice(json_encode($output['name']));
     //    \Drupal::logger('_description')->notice(json_encode($output['weather'][0]['description']));
     //    \Drupal::logger('_icon')->notice(json_encode($output['weather'][0]['icon']));
@@ -120,8 +114,10 @@ class WeatherService {
       '#cache' => ['max-age' => 0],
     ];
 
-    //    \Drupal::logger('_build')->notice(json_encode($build));
-//    \Drupal::logger('_html')->notice(json_encode($html));
+    \Drupal::logger('_build_config')->notice(json_encode($config));
+    \Drupal::logger('_build_output')->notice(json_encode($output));
+    \Drupal::logger('_build')->notice(json_encode($build));
+    \Drupal::logger('_html')->notice(json_encode($html));
 
     return $build;
   }
