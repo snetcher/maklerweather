@@ -1,8 +1,8 @@
 name: MaklerWeather Widget
-type: module
 description: 'Working with API openweathermap'
-package: Custom
-configure: maklerweather.settings
+package: Makler Lotse
+type: module
 core: 8.x
+configure: maklerweather.settings
 dependencies:
   - block
