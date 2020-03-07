@@ -32,6 +32,7 @@ class WeatherService {
    *   The Guzzle HTTP client.
    */
   public function __construct(ClientInterface $http_client) {
+
     $this->httpClient = $http_client;
   }
 
@@ -43,6 +44,7 @@ class WeatherService {
    * @return array
    */
   public function createRequest($options) {
+
     $query = [];
     $appid_config = \Drupal::config('maklerweather.settings')->get('appid');
     $query['appid'] = Html::escape($appid_config);
@@ -58,9 +60,13 @@ class WeatherService {
    * Return the data from the API in xml format.
    */
   public function getWeatherInformation($options) {
+
     try {
+
       $response = $this->httpClient->request('GET', self::$baseUri . '/data/2.5/weather', ['query' => $this->createRequest($options)]);
+
     } catch (GuzzleException $e) {
+
       watchdog_exception('maklerweather', $e);
 
       return FALSE;
@@ -75,7 +81,9 @@ class WeatherService {
   public function getCurrentWeatherInformation($output, $config) {
 
     foreach ($config['outputitems'] as $value) {
+
       if (!empty($config['outputitems'][$value])) {
+
         switch ($config['outputitems'][$value]) {
 
           case 'name':
@@ -97,8 +105,6 @@ class WeatherService {
       }
     }
 
-//    \Drupal::logger('_name')->notice(json_encode($output['name']));
-
     $build[] = [
       '#theme' => 'maklerweather',
       '#attached' => [
@@ -106,11 +112,10 @@ class WeatherService {
           'maklerweather/maklerweather_theme',
         ],
       ],
-      '#cache' => ['max-age' => 0],
+      '#cache' => ['max-age' => 7200],
       '#maklerweather_detail' => $html,
     ];
 
     return $build;
   }
-
 }
