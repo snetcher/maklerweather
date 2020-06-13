@@ -2,3 +2,4 @@ services:
   maklerweather.weather_service:
     class: Drupal\maklerweather\WeatherService
     arguments: ['@http_client']
+

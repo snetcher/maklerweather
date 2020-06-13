@@ -3,3 +3,4 @@ maklerweather_theme:
   css:
     base:
       css/maklerweather.css: {}
+

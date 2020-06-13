@@ -10,7 +10,6 @@ use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Utility\Token;
 use Drupal\maklerweather\WeatherService;
 
-
 /**
  * Provides a block with a Weather Widget.
  *
