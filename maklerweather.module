@@ -14,4 +14,3 @@ function maklerweather_theme($existing, $type, $theme, $path) {
     ],
   ];
 }
-
