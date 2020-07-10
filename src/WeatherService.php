@@ -119,4 +119,3 @@ class WeatherService {
     return $build;
   }
 }
-
