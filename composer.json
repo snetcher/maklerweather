@@ -1,0 +1,18 @@
+{
+    "name":"zenhtml/maklerweather",
+    "type": "module",
+    "keywords": ["block","weather"],
+    "homepage": "https://github.com/snetcher/maklerweather",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Constantine Tretyakoff",
+            "email": "snetcher@gmail.com",
+            "homepage": "http://seld.besnetcher.github.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    }
+}
