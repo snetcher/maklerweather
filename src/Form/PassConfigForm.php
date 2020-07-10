@@ -31,6 +31,7 @@ class PassConfigForm extends ConfigFormBase {
     $form = parent::buildForm($form, $form_state);
     $form['appid'] = [
       '#type' => 'textfield',
+      '#description' => 'Get Api Key from the page <a href="https://home.openweathermap.org/api_keys" target="_blank">https://home.openweathermap.org/api_keys</a>',
       '#title' => $this->t('App Id'),
       '#required' => TRUE,
       '#default_value' => $this->config('maklerweather.settings')->get('appid'),
@@ -48,4 +49,5 @@ class PassConfigForm extends ConfigFormBase {
       ->save();
     parent::submitForm($form, $form_state);
   }
+
 }
