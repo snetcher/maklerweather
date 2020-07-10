@@ -5,4 +5,3 @@
 'administer maklerweather settings':
   title: Administer maklerweather settings
   description: Requires permission to make use of the current maklerweather block for other users.
-
