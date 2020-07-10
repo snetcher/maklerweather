@@ -3,12 +3,12 @@
     "type": "module",
     "keywords": ["block","weather"],
     "homepage": "https://github.com/snetcher/maklerweather",
-    "license": "MIT",
+    "license": "GPL-2.0+",
     "authors": [
         {
             "name": "Constantine Tretyakoff",
             "email": "snetcher@gmail.com",
-            "homepage": "https://snetcher.github.io/",
+            "homepage": "https://www.drupal.org/u/snetcher",
             "role": "Developer"
         }
     ],
