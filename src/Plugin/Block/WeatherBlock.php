@@ -10,6 +10,7 @@ use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Utility\Token;
 use Drupal\maklerweather\WeatherService;
 
+
 /**
  * Provides a block with a Weather Widget.
  *
@@ -110,7 +111,7 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
       '#type' => 'textfield',
       '#title' => $this->t('Enter the Value for selected option'),
       '#required' => TRUE,
-      '#description' => $this->t('In case of geo coordinates please follow the format lat,lon for example: 130,131'),
+      '#description' => $this->t('Format: <code>City_name,country_id</code> Z.B.: <a href="https://openweathermap.org/find?q=duren" target="_blank">Für Düren</a> - "Düren, DE"'),
       '#default_value' => !empty($config['input_value']) ? $config['input_value'] : '',
     ];
 
