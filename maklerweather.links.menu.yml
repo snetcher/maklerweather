@@ -3,4 +3,3 @@ maklerweather.settings:
   description: 'Configure to add the appid value.'
   route_name: maklerweather.settings
   parent: system.admin_config_services
-
