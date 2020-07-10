@@ -5,4 +5,3 @@ maklerweather.settings:
     _title: 'MaklerWeather settings'
   requirements:
     _permission: 'administer maklerweather settings'
-
