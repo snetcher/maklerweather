@@ -47,7 +47,6 @@ class WeatherService
      */
     public function createRequest($options)
     {
-
         $query = [];
         $query['appid'] = $this->getAppId();
         $query['cnt'] = $options['count'];
