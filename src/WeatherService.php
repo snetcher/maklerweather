@@ -17,7 +17,7 @@ class WeatherService
      *
      * @var Drupal\maklerweather
      */
-    public static $baseUri = 'http://api.openweathermap.org/';
+    public static $baseUri = 'https://api.openweathermap.org/';
 
     /**
      * The HTTP client to fetch the feed data with.
