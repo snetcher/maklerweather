@@ -1,6 +1,6 @@
 {
     "name":"zenhtml/maklerweather",
-    "type": "module",
+    "type": "drupal-module",
     "keywords": ["block","weather"],
     "homepage": "https://github.com/snetcher/maklerweather",
     "license": "GPL-2.0+",
