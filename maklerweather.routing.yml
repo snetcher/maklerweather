@@ -2,6 +2,6 @@ maklerweather.settings:
   path: '/admin/config/services/maklerweather'
   defaults:
     _form: '\Drupal\maklerweather\Form\PassConfigForm'
-    _title: 'MaklerWeather settings'
+    _title: 'Makler Weather settings'
   requirements:
     _permission: 'administer maklerweather settings'

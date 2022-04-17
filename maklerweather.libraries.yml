@@ -1,4 +1,4 @@
-maklerweather_theme:
+maklerweather:
   version: 8.x
   css:
     base:

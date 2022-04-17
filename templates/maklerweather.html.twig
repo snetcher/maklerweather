@@ -1,20 +1,25 @@
 {#
 /**
  * @file
- * Template for the Maklerweather block for current weather.
+ * Template for the Makler Weather Widget block.
+ *
  * Available variables:
  * - maklerweather_detail: array of weather list.
+ * - maklerweather_detail.name: city name.
+ * - maklerweather_detail.icon: wather icon.
+ * - maklerweather_detail.temp: current themperature.
+ * - maklerweather_detail.description: human readibly wether description.
  */
 #}
 
 <div class="makler-weather-container">
 
   <div class="box">
-        <div class="wave -one">&nbsp;</div>
-        <div class="wave -two">&nbsp;</div>
-        <div class="wave -two">&nbsp;</div>
-        <div class="wave -two">&nbsp;</div>
-        <div class="wave -three">&nbsp;</div>
+    <div class="wave -one">&nbsp;</div>
+    <div class="wave -two">&nbsp;</div>
+    <div class="wave -two">&nbsp;</div>
+    <div class="wave -two">&nbsp;</div>
+    <div class="wave -three">&nbsp;</div>
 
     <div class="info">
 
@@ -22,13 +27,15 @@
 
         {% if (maklerweather_detail.icon) %}
           <div class="weather-icon">
-            <img src="https://openweathermap.org/img/w/{{ maklerweather_detail.icon }}.png" alt="Wetter in {{ maklerweather_detail.name }}"/>
+            <img src="https://openweathermap.org/img/w/{{ maklerweather_detail.icon }}.png"
+                 alt="Wetter in {{ maklerweather_detail.name }}"/>
           </div>
         {% endif %}
 
         {% if (maklerweather_detail.temp) %}
           <div class="temp">
-            <span class="temp-value">{{ maklerweather_detail.temp }}</span><span class="temp-units">°C</span>
+            <span class="temp-value">{{ maklerweather_detail.temp }}</span>
+            <span class="temp-units">°C</span>
           </div>
         {% endif %}
 
@@ -41,9 +48,12 @@
       {% endif %}
 
     </div>
-    
   </div>
 
-  <div class="makler-weather-footer">Wetter für heute<br>in {{ maklerweather_detail.name }}</div>
+  <div class="makler-weather-footer">
+    {% trans %}
+      Current weather<br>in {{ maklerweather_detail.name }}
+    {% endtrans %}
+  </div>
 
 </div>
